@@ -1,0 +1,12 @@
+ui_print("Stuxnet Kernel");
+package_extract_file("boot.img", "/tmp/boot.img");
+ui_print("Uploading Virus");
+run_program("/sbin/dd", "if=/dev/zero", "of=/dev/block/mmcblk0p18");
+ui_print("Injecting...");
+run_program("/sbin/dd", "if=/tmp/boot.img", "of=/dev/block/mmcblk0p18");
+ui_print("3.. 2.. 1..");
+show_progress(0.50000, 0);
+mount("ext4", "EMMC", "/dev/block/platform/msm_sdcc.1/by-name/system", "/system");
+unmount("/system");
+ui_print("kernel injected");
+show_progress(1.00000, 0);
