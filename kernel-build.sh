@@ -10,13 +10,13 @@ echo "* Its your responsibility upon building my kernel. *"
 echo "****************************************************"
 echo ""
 
-git checkout L
+git checkout L-master
 
 make clean
 make mrproper
 export CCACHE=1
 export ARCH=arm
-export CROSS_COMPILE=/data1/Gnome/G3/arm-eabi-4.8/bin/arm-eabi-
+export CROSS_COMPILE=~/Stuxnet/arm-eabi-4.8/bin/arm-eabi-
 make cyanogenmod_d855_defconfig
 time make -j8 2>&1 | tee kernel.log
 mv kernel.log ../
